@@ -19,7 +19,7 @@
 给出一数组A[0~5] = {5,4,6,10,1,12},则区间[2,5]之间的最值为1。
 方法：ST算法分成两部分：离线预处理 （nlogn）和 在线查询（O(1)）。虽然还可以使用线段树、树状链表等求解区间最值，但是ST算法要比它们更快，而且适用于在线查询。
 （1）离线预处理：运用DP思想，用于求解区间最值，并保存到一个">
-<meta property="og:updated_time" content="2016-10-01T07:34:24.954Z">
+<meta property="og:updated_time" content="2016-10-01T07:37:00.156Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ST算法">
 <meta name="twitter:description" content="作用：ST算法是用来求解给定区间RMQ的最值，本文以最小值为例
@@ -299,6 +299,7 @@
 <p>方法：ST算法分成两部分：离线预处理 （nlogn）和 在线查询（O(1)）。虽然还可以使用线段树、树状链表等求解区间最值，但是ST算法要比它们更快，而且适用于在线查询。</p>
 <p>（1）离线预处理：运用DP思想，用于求解区间最值，并保存到一个二维数组中。</p>
 <p>（2）在线查询：对给定区间进行分割，借助该二维数组求最值</p>
+<a id="more"></a>
 <p>具体解释：</p>
 <p>（1）离线预处理：</p>
 <p>ST算法使用DP思想求解区间最值，貌似属于区间动态规划，不过区间在增加时，每次并不是增加一个长度，而是使用倍增的思想，每次增加2^i个长度。</p>
@@ -330,7 +331,7 @@
         <p><span>本文标题:</span><a href="/2016/10/01/ST/">ST算法</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Franky 的个人博客">Franky</a></p>
         <p><span>发布时间:</span>2016年10月01日 - 15时22分</p>
-        <p><span>最后更新:</span>2016年10月01日 - 15时34分</p>
+        <p><span>最后更新:</span>2016年10月01日 - 15时37分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/10/01/ST/" title="ST算法">http://yoursite.com/2016/10/01/ST/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/10/01/ST/　　作者: Franky" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
