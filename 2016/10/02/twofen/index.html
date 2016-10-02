@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://franky-in.github.com/2016/10/02/twofen/index.html">
 <meta property="og:site_name" content="Franky">
 <meta property="og:description" content="二分区间可以是左闭右开，或者都闭也行。如果是都闭，判断条件是while(L&amp;lt;R)。如果是L+1，那么就需要mid=L+(R-L)/2，靠近L一点。如果是R-1，就注意要mid=L+(R-L+1)/2，靠近R一点。这样做是为了避免出现区间[a,a+1]出现死循环问题。总之二分的条件很灵活，判断条件也可以是L&amp;lt;R-1，L和R也可以都等于mid，还是要看情况，只要避免死循环就行了。">
-<meta property="og:updated_time" content="2016-10-02T03:03:30.514Z">
+<meta property="og:updated_time" content="2016-10-02T03:08:56.211Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于二分的边界问题的大讨论">
 <meta name="twitter:description" content="二分区间可以是左闭右开，或者都闭也行。如果是都闭，判断条件是while(L&amp;lt;R)。如果是L+1，那么就需要mid=L+(R-L)/2，靠近L一点。如果是R-1，就注意要mid=L+(R-L+1)/2，靠近R一点。这样做是为了避免出现区间[a,a+1]出现死循环问题。总之二分的条件很灵活，判断条件也可以是L&amp;lt;R-1，L和R也可以都等于mid，还是要看情况，只要避免死循环就行了。">
@@ -282,7 +282,9 @@
       
           
         <p>二分区间可以是左闭右开，或者都闭也行。<br>如果是都闭，判断条件是while(L&lt;R)。如果是L+1，那么就需要mid=L+(R-L)/2，靠近L一点。如果是R-1，就注意要mid=L+(R-L+1)/2，靠近R一点。这样做是为了避免出现区间[a,a+1]出现死循环问题。<br>总之二分的条件很灵活，判断条件也可以是L&lt;R-1，L和R也可以都等于mid，还是要看情况，只要避免死循环就行了。</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><p>考虑一个问题：给定正序排列的数组，A，有 n 个元素，找出不大于 M 的元素中最大的元素的下标。</p>
+<hr>
+<a id="more"></a>
+<p>考虑一个问题：给定正序排列的数组，A，有 n 个元素，找出不大于 M 的元素中最大的元素的下标。</p>
 <p>这个问题要考虑以下几个边界条件：</p>
 <p>1.不大于 M 的元素中最大的元素可能就是 M </p>
 <p>2.不大于 M 的元素中最大的元素不是M</p>
@@ -320,7 +322,7 @@
         <p><span>本文标题:</span><a href="/2016/10/02/twofen/">关于二分的边界问题的大讨论</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Franky 的个人博客">Franky</a></p>
         <p><span>发布时间:</span>2016年10月02日 - 10时26分</p>
-        <p><span>最后更新:</span>2016年10月02日 - 11时03分</p>
+        <p><span>最后更新:</span>2016年10月02日 - 11时08分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/10/02/twofen/" title="关于二分的边界问题的大讨论">http://franky-in.github.com/2016/10/02/twofen/</a>
             <span class="copy-path" data-clipboard-text="原文: http://franky-in.github.com/2016/10/02/twofen/　　作者: Franky" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -349,7 +351,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#"><span class="toc-number">1.</span> <span class="toc-text"></span></a></li></ol>
+    
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
