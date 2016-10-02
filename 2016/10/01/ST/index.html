@@ -19,7 +19,7 @@
 给出一数组A[0~5] = {5,4,6,10,1,12},则区间[2,5]之间的最值为1。
 方法：ST算法分成两部分：离线预处理 （nlogn）和 在线查询（O(1)）。虽然还可以使用线段树、树状链表等求解区间最值，但是ST算法要比它们更快，而且适用于在线查询。
 （1）离线预处理：运用DP思想，用于求解区间最值，并保存到一个">
-<meta property="og:updated_time" content="2016-10-01T07:37:00.156Z">
+<meta property="og:updated_time" content="2016-10-02T03:03:21.592Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ST算法">
 <meta name="twitter:description" content="作用：ST算法是用来求解给定区间RMQ的最值，本文以最小值为例
@@ -300,12 +300,14 @@
 <p>（1）离线预处理：运用DP思想，用于求解区间最值，并保存到一个二维数组中。</p>
 <p>（2）在线查询：对给定区间进行分割，借助该二维数组求最值</p>
 <a id="more"></a>
+<hr>
 <p>具体解释：</p>
 <p>（1）离线预处理：</p>
 <p>ST算法使用DP思想求解区间最值，貌似属于区间动态规划，不过区间在增加时，每次并不是增加一个长度，而是使用倍增的思想，每次增加2^i个长度。</p>
 <p>使用F[i,j]表示以i为起点，区间长度为2^j的区间最值，此时区间为[i,i + 2^j - 1]。</p>
 <p>比如，F[0,2]表示区间[0,3]的最小值，即等于4，F[2,2]表示区间[2,5]的最小值，即等于1。</p>
 <p>在求解F[i,j]时，ST算法是先对长度为2^j的区间[i,i + 2^j - 1]分成两等份，每份长度均为2^(j - 1)。之后在分别求解这两个区间的最值F[i,j - 1]和F[i + 2^(j - 1),j - 1]。，最后在结合这两个区间的最值，求出整个区间的最值。特殊情况，当j = 0时，区间长度等于0，即区间中只有一个元素，此时F[i,0]应等于每一个元素的值。</p>
+<hr>
 <p>举例：要求解F[1,2]的值，即求解区间[1,4] = {4,6,10,1}的最小值，此时需要把这个区间分成两个等长的区间，即为[1,2]和[3,4]，之后分别求解这两个区间的最小值。此时这两个区间最小值分别对应着F[1,1] 和 F[3,1]的值。</p>
 <p>状态转移方程是 F[i,j] = min(F[i,j - 1],F[i + 2^(j - 1),j - 1])</p>
 <p>初始状态为：F[i,0] = A[i]。</p>
@@ -316,8 +318,7 @@
 <p>这里我们把待查询的区间分成两个小区间，这两个小区间满足两个条件：（1）这两个小区间要能覆盖整个区间（2）为了利用预处理的结果，要求小区间长度相等且都为2^i。注意两个小区间可能重叠。</p>
 <p>如：待查询的区间为[3,11]，先尽量等分两个区间，则先设置为[3,7]和[8,11]。之后再扩大这两个区间，让其长度都等于为2^i。刚划分的两个区间长度分别为5和4，之后继续增加区间长度，直到其成为2^i。此时满足两个条件的最小区间长度为8,此时i = 3。</p>
 <p>在程序计算求解区间长度时，并没有那么麻烦，我们可以直接得到i，即等于直接对区间长度取以2为底的对数。这里，对于区间[3,11]，其分解的区间长度为int（log(11 - 3 + 1)） = 3，这里log是以2为底的。</p>
-<p>根据上述思想，可以把待查询区间[x，y]分成两个小区间[x，x + 2^i - 1] 和 [y - 2^i + 1，y] ，其又分别对应着F[x,i]和F[y - 2^i + 1,i]，此时为了求解整个区间的最小值，我们只需求这两个值得最小值即可，此时复杂度是O(1)。</p>
-<p>代码：</p>
+<h2 id="根据上述思想，可以把待查询区间-x，y-分成两个小区间-x，x-2-i-1-和-y-2-i-1，y-，其又分别对应着F-x-i-和F-y-2-i-1-i-，此时为了求解整个区间的最小值，我们只需求这两个值得最小值即可，此时复杂度是O-1-。"><a href="#根据上述思想，可以把待查询区间-x，y-分成两个小区间-x，x-2-i-1-和-y-2-i-1，y-，其又分别对应着F-x-i-和F-y-2-i-1-i-，此时为了求解整个区间的最小值，我们只需求这两个值得最小值即可，此时复杂度是O-1-。" class="headerlink" title="根据上述思想，可以把待查询区间[x，y]分成两个小区间[x，x + 2^i - 1] 和 [y - 2^i + 1，y] ，其又分别对应着F[x,i]和F[y - 2^i + 1,i]，此时为了求解整个区间的最小值，我们只需求这两个值得最小值即可，此时复杂度是O(1)。"></a>根据上述思想，可以把待查询区间[x，y]分成两个小区间[x，x + 2^i - 1] 和 [y - 2^i + 1，y] ，其又分别对应着F[x,i]和F[y - 2^i + 1,i]，此时为了求解整个区间的最小值，我们只需求这两个值得最小值即可，此时复杂度是O(1)。</h2><p>代码：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="comment">/*方程</span></div><div class="line">F[i,j]:区间[i,i + 2^j - 1]的最小值，此时区间长度为2^j</div><div class="line">F[i,j] = min(F[i,j - 1],F[i + 2^(j - 1),j - 1])</div><div class="line">F[i,0] = nArr[i];*/</div><div class="line"></div><div class="line"><span class="keyword">int</span> F[<span class="number">1000000</span>][<span class="number">20</span>];<span class="comment">//待比较元素的个数最大为1百万</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">SparseTable</span><span class="params">(<span class="keyword">int</span> nArr[],<span class="keyword">int</span> nLen)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="comment">//初始化</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; nLen;i++)</div><div class="line">    &#123;</div><div class="line">        F[i][<span class="number">0</span>] = nArr[i];</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//递推</span></div><div class="line">    <span class="keyword">int</span> nLog = <span class="keyword">int</span>(<span class="built_in">log</span>(<span class="keyword">double</span>(nLen))/<span class="built_in">log</span>(<span class="number">2.0</span>));</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>;j &lt;= nLog;j++)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; nLen;i++)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span> ((i + (<span class="number">1</span> &lt;&lt; j) - <span class="number">1</span>) &lt; nLen)<span class="comment">//区间的端点不能超过数组最后一位的下标</span></div><div class="line">            &#123;</div><div class="line">                F[i][j] = min(F[i][j - <span class="number">1</span>],F[i + (<span class="number">1</span> &lt;&lt; (j - <span class="number">1</span>))][j - <span class="number">1</span>]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">RMQ</span><span class="params">(<span class="keyword">int</span> nArr[],<span class="keyword">int</span> nLen,<span class="keyword">int</span> nStart,<span class="keyword">int</span> nEnd)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> nLog = (<span class="keyword">int</span>)(<span class="built_in">log</span>(<span class="keyword">double</span>(nEnd - nStart + <span class="number">1</span>)/<span class="built_in">log</span>(<span class="number">2.0</span>)));</div><div class="line">    <span class="keyword">return</span> min(F[nStart][nLog],F[nEnd - (<span class="number">1</span> &lt;&lt; nLog) + <span class="number">1</span>][nLog]);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> nArr[<span class="number">6</span>] = &#123;<span class="number">5</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">10</span>,<span class="number">1</span>,<span class="number">12</span>&#125;;</div><div class="line">    SparseTable(nArr,<span class="number">6</span>);</div><div class="line">     </div><div class="line">    <span class="built_in">cout</span>&lt;&lt;RMQ(nArr,<span class="number">6</span>,<span class="number">0</span>,<span class="number">5</span>)&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;RMQ(nArr,<span class="number">6</span>,<span class="number">1</span>,<span class="number">3</span>)&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;RMQ(nArr,<span class="number">6</span>,<span class="number">2</span>,<span class="number">5</span>)&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;RMQ(nArr,<span class="number">6</span>,<span class="number">2</span>,<span class="number">2</span>)&lt;&lt;<span class="built_in">endl</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>参考：<br>思考，思考，再思考~</p>
 
@@ -331,7 +332,7 @@
         <p><span>本文标题:</span><a href="/2016/10/01/ST/">ST算法</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Franky 的个人博客">Franky</a></p>
         <p><span>发布时间:</span>2016年10月01日 - 15时22分</p>
-        <p><span>最后更新:</span>2016年10月01日 - 15时37分</p>
+        <p><span>最后更新:</span>2016年10月02日 - 11时03分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/10/01/ST/" title="ST算法">http://franky-in.github.com/2016/10/01/ST/</a>
             <span class="copy-path" data-clipboard-text="原文: http://franky-in.github.com/2016/10/01/ST/　　作者: Franky" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -369,7 +370,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#根据上述思想，可以把待查询区间-x，y-分成两个小区间-x，x-2-i-1-和-y-2-i-1，y-，其又分别对应着F-x-i-和F-y-2-i-1-i-，此时为了求解整个区间的最小值，我们只需求这两个值得最小值即可，此时复杂度是O-1-。"><span class="toc-number">1.</span> <span class="toc-text">根据上述思想，可以把待查询区间[x，y]分成两个小区间[x，x + 2^i - 1] 和 [y - 2^i + 1，y] ，其又分别对应着F[x,i]和F[y - 2^i + 1,i]，此时为了求解整个区间的最小值，我们只需求这两个值得最小值即可，此时复杂度是O(1)。</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 

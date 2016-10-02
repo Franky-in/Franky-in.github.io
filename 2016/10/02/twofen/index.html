@@ -5,16 +5,16 @@
   
   <title>关于二分的边界问题的大讨论 | Franky</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="二分区间可以是左闭右开，或者都闭也行。如果是都闭，判断条件是while(L&amp;lt;R)。如果是L+1，那么就需要mid=L+(R-L)/2，靠近L一点。如果是R-1，就注意要mid=L+(R-L+1)/2，靠近R一点。这样做是为了避免出现区间[a,a+1]出现死循环问题。总之二分的条件很灵活，判断条件也可以是L&amp;lt;R-1，L和R也可以都等于mid，还是要看情况，只要避免死循环就行了。考虑一个问">
+  <meta name="description" content="二分区间可以是左闭右开，或者都闭也行。如果是都闭，判断条件是while(L&amp;lt;R)。如果是L+1，那么就需要mid=L+(R-L)/2，靠近L一点。如果是R-1，就注意要mid=L+(R-L+1)/2，靠近R一点。这样做是为了避免出现区间[a,a+1]出现死循环问题。总之二分的条件很灵活，判断条件也可以是L&amp;lt;R-1，L和R也可以都等于mid，还是要看情况，只要避免死循环就行了。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于二分的边界问题的大讨论">
 <meta property="og:url" content="http://franky-in.github.com/2016/10/02/twofen/index.html">
 <meta property="og:site_name" content="Franky">
-<meta property="og:description" content="二分区间可以是左闭右开，或者都闭也行。如果是都闭，判断条件是while(L&amp;lt;R)。如果是L+1，那么就需要mid=L+(R-L)/2，靠近L一点。如果是R-1，就注意要mid=L+(R-L+1)/2，靠近R一点。这样做是为了避免出现区间[a,a+1]出现死循环问题。总之二分的条件很灵活，判断条件也可以是L&amp;lt;R-1，L和R也可以都等于mid，还是要看情况，只要避免死循环就行了。考虑一个问">
-<meta property="og:updated_time" content="2016-10-02T02:45:09.311Z">
+<meta property="og:description" content="二分区间可以是左闭右开，或者都闭也行。如果是都闭，判断条件是while(L&amp;lt;R)。如果是L+1，那么就需要mid=L+(R-L)/2，靠近L一点。如果是R-1，就注意要mid=L+(R-L+1)/2，靠近R一点。这样做是为了避免出现区间[a,a+1]出现死循环问题。总之二分的条件很灵活，判断条件也可以是L&amp;lt;R-1，L和R也可以都等于mid，还是要看情况，只要避免死循环就行了。">
+<meta property="og:updated_time" content="2016-10-02T03:03:30.514Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于二分的边界问题的大讨论">
-<meta name="twitter:description" content="二分区间可以是左闭右开，或者都闭也行。如果是都闭，判断条件是while(L&amp;lt;R)。如果是L+1，那么就需要mid=L+(R-L)/2，靠近L一点。如果是R-1，就注意要mid=L+(R-L+1)/2，靠近R一点。这样做是为了避免出现区间[a,a+1]出现死循环问题。总之二分的条件很灵活，判断条件也可以是L&amp;lt;R-1，L和R也可以都等于mid，还是要看情况，只要避免死循环就行了。考虑一个问">
+<meta name="twitter:description" content="二分区间可以是左闭右开，或者都闭也行。如果是都闭，判断条件是while(L&amp;lt;R)。如果是L+1，那么就需要mid=L+(R-L)/2，靠近L一点。如果是R-1，就注意要mid=L+(R-L+1)/2，靠近R一点。这样做是为了避免出现区间[a,a+1]出现死循环问题。总之二分的条件很灵活，判断条件也可以是L&amp;lt;R-1，L和R也可以都等于mid，还是要看情况，只要避免死循环就行了。">
   
     <link rel="alternative" href="/atom.xml" title="Franky" type="application/atom+xml">
   
@@ -281,8 +281,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>二分区间可以是左闭右开，或者都闭也行。<br>如果是都闭，判断条件是while(L&lt;R)。如果是L+1，那么就需要mid=L+(R-L)/2，靠近L一点。如果是R-1，就注意要mid=L+(R-L+1)/2，靠近R一点。这样做是为了避免出现区间[a,a+1]出现死循环问题。<br>总之二分的条件很灵活，判断条件也可以是L&lt;R-1，L和R也可以都等于mid，还是要看情况，只要避免死循环就行了。<br>考虑一个问题：给定正序排列的数组，A，有 n 个元素，找出不大于 M 的元素中最大的元素的下标。</p>
-<a id="more"></a>
+        <p>二分区间可以是左闭右开，或者都闭也行。<br>如果是都闭，判断条件是while(L&lt;R)。如果是L+1，那么就需要mid=L+(R-L)/2，靠近L一点。如果是R-1，就注意要mid=L+(R-L+1)/2，靠近R一点。这样做是为了避免出现区间[a,a+1]出现死循环问题。<br>总之二分的条件很灵活，判断条件也可以是L&lt;R-1，L和R也可以都等于mid，还是要看情况，只要避免死循环就行了。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><p>考虑一个问题：给定正序排列的数组，A，有 n 个元素，找出不大于 M 的元素中最大的元素的下标。</p>
 <p>这个问题要考虑以下几个边界条件：</p>
 <p>1.不大于 M 的元素中最大的元素可能就是 M </p>
 <p>2.不大于 M 的元素中最大的元素不是M</p>
@@ -294,6 +294,7 @@
 <p>我们先这样考虑，当 A[mid] &lt; M时，将 mid 元素也纳入下一次查找的范围。<br>因为 A[mid] 是小于 M的，这样就保证了划分到的范围必然能够找到解。</p>
 <p>但如果我们考虑查找的部分是下标为 4 ~ 5 的元素，值是 4,7，<br>令 M = 70，A[mid] = A[(4 + 5)/2] = A[4] &lt; M，<br>如果按上面的思路，我们将 A[mid] 纳入到下一次查找的范围，<br>因此，下次查找的范围是 4 ~ 5，又是 4 ~5 ！于是，按这个处理会陷入死循环！</p>
 <p>所以，上面的思路是行不通的！</p>
+<hr>
 <p><strong>所以，当 A[mid] &lt; M时，不能将 mid 元素纳入下一次查找的范围。（结论一）</strong></p>
 <p>我们再考虑 A[mid] &gt; M 时，显然没有必要将 mid 元素纳入下一次查找的范围，因为我们查找的元素是小于 M的，没有必要将一个不可能成为结果的元素纳入查找。实际上，如果纳入查找，也可能形成死循环。请自行脑补。</p>
 <p><strong>所以，当A[mid] &gt; M时，不能将 mid 元素纳入下一次查找的范围。（结论二）</strong></p>
@@ -303,6 +304,7 @@
 <p>2.我们每次检查下次查找的范围的首个元素 A[mid + 1] （注意判断 mid + 1 是不是有效的下标），若 A[mid + 1] &gt; M，则 mid 元素就是小于 M 的最大元素。若 A[mid + 1] = M ，直接返回结果。剩下的 A[mid + 1] &lt; M 继续查找。</p>
 <p>但是上面还没有回答一个问题，结果如何给出？</p>
 <p>实际上，我们的处理过程，每次都可以找出 A[mid] &lt; M ，那么，它就是一个潜在的答案，我们只需要保存下来，并且去更新就行了，最终一定可以得到答案。</p>
+<hr>
 <p>最后，还有一个问题。</p>
 <p>查找结束的条件，真的是“等于查找元素或者待查找的部分为空”吗？<br>while(i != j) 是正确的处理吗？答案是，不正确！</p>
 <p>按代码的逻辑，可能出现在一堆大于 M 的元素中寻找结果。<br>假设现在还剩下两个元素 i ~ j ，值是 100,200。<br>A[mid] 必将大于 M，因为这一堆元素都比 M 大。<br>mid = (i + j)/2 = i，下一次查找的范围是 i ~ mid - 1，即 i ~ i-1，此时，应该退出查找，因为查找的部分为负范围，是无效的范围。<br>因此，正确的代码是将上面那句改成： while(i &lt;= j)。</p>
@@ -318,7 +320,7 @@
         <p><span>本文标题:</span><a href="/2016/10/02/twofen/">关于二分的边界问题的大讨论</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Franky 的个人博客">Franky</a></p>
         <p><span>发布时间:</span>2016年10月02日 - 10时26分</p>
-        <p><span>最后更新:</span>2016年10月02日 - 10时45分</p>
+        <p><span>最后更新:</span>2016年10月02日 - 11时03分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/10/02/twofen/" title="关于二分的边界问题的大讨论">http://franky-in.github.com/2016/10/02/twofen/</a>
             <span class="copy-path" data-clipboard-text="原文: http://franky-in.github.com/2016/10/02/twofen/　　作者: Franky" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -347,7 +349,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#"><span class="toc-number">1.</span> <span class="toc-text"></span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
