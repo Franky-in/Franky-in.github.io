@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>关于二分的边界问题的大讨论 | Franky</title>
+  <title>string&amp;&amp;char数组 | Franky</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="二分区间可以是左闭右开，或者都闭也行。如果是都闭，判断条件是while(L&amp;lt;R)。如果是L+1，那么就需要mid=L+(R-L)/2，靠近L一点。如果是R-1，就注意要mid=L+(R-L+1)/2，靠近R一点。这样做是为了避免出现区间[a,a+1]出现死循环问题。总之二分的条件很灵活，判断条件也可以是L&amp;lt;R-1，L和R也可以都等于mid，还是要看情况，只要避免死循环就行了。">
+  <meta name="description" content="关于string=,assign()   //赋以新值 swap()   //交换两个字符串的内容 +=,append(),push_back() //在尾部添加字符 insert() //插入字符 erase() //删除字符 clear() //删除全部字符 replace() //替换字符 + //串联字符串 ==,!=,&amp;lt;,&amp;lt;=,&amp;gt;,&amp;gt;=,compare()  //">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于二分的边界问题的大讨论">
-<meta property="og:url" content="http://franky-in.github.com/2016/10/02/twofen/index.html">
+<meta property="og:title" content="string&&char数组">
+<meta property="og:url" content="http://franky-in.github.com/2016/10/03/stringandchar/index.html">
 <meta property="og:site_name" content="Franky">
-<meta property="og:description" content="二分区间可以是左闭右开，或者都闭也行。如果是都闭，判断条件是while(L&amp;lt;R)。如果是L+1，那么就需要mid=L+(R-L)/2，靠近L一点。如果是R-1，就注意要mid=L+(R-L+1)/2，靠近R一点。这样做是为了避免出现区间[a,a+1]出现死循环问题。总之二分的条件很灵活，判断条件也可以是L&amp;lt;R-1，L和R也可以都等于mid，还是要看情况，只要避免死循环就行了。">
-<meta property="og:updated_time" content="2016-10-02T03:08:56.211Z">
+<meta property="og:description" content="关于string=,assign()   //赋以新值 swap()   //交换两个字符串的内容 +=,append(),push_back() //在尾部添加字符 insert() //插入字符 erase() //删除字符 clear() //删除全部字符 replace() //替换字符 + //串联字符串 ==,!=,&amp;lt;,&amp;lt;=,&amp;gt;,&amp;gt;=,compare()  //">
+<meta property="og:updated_time" content="2016-10-03T01:10:51.858Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于二分的边界问题的大讨论">
-<meta name="twitter:description" content="二分区间可以是左闭右开，或者都闭也行。如果是都闭，判断条件是while(L&amp;lt;R)。如果是L+1，那么就需要mid=L+(R-L)/2，靠近L一点。如果是R-1，就注意要mid=L+(R-L+1)/2，靠近R一点。这样做是为了避免出现区间[a,a+1]出现死循环问题。总之二分的条件很灵活，判断条件也可以是L&amp;lt;R-1，L和R也可以都等于mid，还是要看情况，只要避免死循环就行了。">
+<meta name="twitter:title" content="string&&char数组">
+<meta name="twitter:description" content="关于string=,assign()   //赋以新值 swap()   //交换两个字符串的内容 +=,append(),push_back() //在尾部添加字符 insert() //插入字符 erase() //删除字符 clear() //删除全部字符 replace() //替换字符 + //串联字符串 ==,!=,&amp;lt;,&amp;lt;=,&amp;gt;,&amp;gt;=,compare()  //">
   
     <link rel="alternative" href="/atom.xml" title="Franky" type="application/atom+xml">
   
@@ -239,11 +239,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-twofen" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-stringandchar" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/10/02/twofen/" class="article-date">
-      <time datetime="2016-10-02T02:26:21.000Z" itemprop="datePublished">2016-10-02</time>
+      <a href="/2016/10/03/stringandchar/" class="article-date">
+      <time datetime="2016-10-03T01:04:47.000Z" itemprop="datePublished">2016-10-03</time>
 </a>
     </div>
   
@@ -256,7 +256,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      关于二分的边界问题的大讨论
+      string&amp;&amp;char数组
     </h1>
   
 
@@ -265,13 +265,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/二分/">二分</a>
+    <a class="article-category-link" href="/categories/常识/">常识</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二分/">二分</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/细节/">细节</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/常识/">常识</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/细节/">细节</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -281,36 +281,41 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>二分区间可以是左闭右开，或者都闭也行。<br>如果是都闭，判断条件是while(L&lt;R)。如果是L+1，那么就需要mid=L+(R-L)/2，靠近L一点。如果是R-1，就注意要mid=L+(R-L+1)/2，靠近R一点。这样做是为了避免出现区间[a,a+1]出现死循环问题。<br>总之二分的条件很灵活，判断条件也可以是L&lt;R-1，L和R也可以都等于mid，还是要看情况，只要避免死循环就行了。</p>
-<hr>
-<a id="more"></a>
-<p>考虑一个问题：给定正序排列的数组，A，有 n 个元素，找出不大于 M 的元素中最大的元素的下标。</p>
-<p>这个问题要考虑以下几个边界条件：</p>
-<p>1.不大于 M 的元素中最大的元素可能就是 M </p>
-<p>2.不大于 M 的元素中最大的元素不是M</p>
-<p><strong>另外，还有隐形的边界问题!!!
-</strong></p>
-<p>1.查找何时结束。在二分查找中，一般是以等于查找元素或者待查找的部分为空作为结束条件。在这个问题中，实际上也是以为这两个条件的或作为结束条件。</p>
-<p>2.查找的过程中，设当前查找部分为 i ~ j，我们用 A[(i + j)/2]去定位下次应该在左边部分，还是右边部分查找。</p>
-<p>但是这个思想忽略了一种情况，我们设想一下，<br>如果现在等查找的部分是下标为13 ~ 17 的元素，<br>值是 11,23,44,100,200, 令 M = 70；<br>此时 A[mid] = A[(13 + 17)/2] = A[15] = 44，<br>按上面的思想，下一次查找的范围是 16 ~ 17 元素。<br>但我们看上面的值，它们都大于 M，因此，不可能在剩下的元素中找到不大于 M 的元素中最大的元素。很明显，说明上一次划分下一次查找部分的地方出错了。</p>
-<p>我们先这样考虑，当 A[mid] &lt; M时，将 mid 元素也纳入下一次查找的范围。<br>因为 A[mid] 是小于 M的，这样就保证了划分到的范围必然能够找到解。</p>
-<p>但如果我们考虑查找的部分是下标为 4 ~ 5 的元素，值是 4,7，<br>令 M = 70，A[mid] = A[(4 + 5)/2] = A[4] &lt; M，<br>如果按上面的思路，我们将 A[mid] 纳入到下一次查找的范围，<br>因此，下次查找的范围是 4 ~ 5，又是 4 ~5 ！于是，按这个处理会陷入死循环！</p>
-<p>所以，上面的思路是行不通的！</p>
-<hr>
-<p><strong>所以，当 A[mid] &lt; M时，不能将 mid 元素纳入下一次查找的范围。（结论一）</strong></p>
-<p>我们再考虑 A[mid] &gt; M 时，显然没有必要将 mid 元素纳入下一次查找的范围，因为我们查找的元素是小于 M的，没有必要将一个不可能成为结果的元素纳入查找。实际上，如果纳入查找，也可能形成死循环。请自行脑补。</p>
-<p><strong>所以，当A[mid] &gt; M时，不能将 mid 元素纳入下一次查找的范围。（结论二）</strong></p>
-<p>因此，我们循环里面的执行流程结构是不会改变的，还是上面给出代码的结构。</p>
-<p>由结论一，不将 mid 加入下次查找的范围，那么，下一次查找的范围的元素都是大于 M 的，此时，我们有两种处理手段：</p>
-<p>1.让其继续寻找，依据结论一和结论二，我们避开了死循环的机会，因此，继续寻找最终必定会处理完成。</p>
-<p>2.我们每次检查下次查找的范围的首个元素 A[mid + 1] （注意判断 mid + 1 是不是有效的下标），若 A[mid + 1] &gt; M，则 mid 元素就是小于 M 的最大元素。若 A[mid + 1] = M ，直接返回结果。剩下的 A[mid + 1] &lt; M 继续查找。</p>
-<p>但是上面还没有回答一个问题，结果如何给出？</p>
-<p>实际上，我们的处理过程，每次都可以找出 A[mid] &lt; M ，那么，它就是一个潜在的答案，我们只需要保存下来，并且去更新就行了，最终一定可以得到答案。</p>
-<hr>
-<p>最后，还有一个问题。</p>
-<p>查找结束的条件，真的是“等于查找元素或者待查找的部分为空”吗？<br>while(i != j) 是正确的处理吗？答案是，不正确！</p>
-<p>按代码的逻辑，可能出现在一堆大于 M 的元素中寻找结果。<br>假设现在还剩下两个元素 i ~ j ，值是 100,200。<br>A[mid] 必将大于 M，因为这一堆元素都比 M 大。<br>mid = (i + j)/2 = i，下一次查找的范围是 i ~ mid - 1，即 i ~ i-1，此时，应该退出查找，因为查找的部分为负范围，是无效的范围。<br>因此，正确的代码是将上面那句改成： while(i &lt;= j)。</p>
-<p>毫无疑问，上面的第 2 种处理效率更高，因为它能避开很多无谓的查找，因此，最终给出一个效率稍高的实现。</p>
+        <h2 id="关于string"><a href="#关于string" class="headerlink" title="关于string"></a>关于string</h2><p>=,assign()   //赋以新值<br> swap()   //交换两个字符串的内容<br> +=,append(),push_back() //在尾部添加字符<br> insert() //插入字符<br> erase() //删除字符<br> clear() //删除全部字符<br> replace() //替换字符<br> + //串联字符串<br> ==,!=,&lt;,&lt;=,&gt;,&gt;=,compare()  //比较字符串<br> size(),length()  //返回字符数量<br> max_size() //返回字符的可能最大个数<br> empty()  //判断字符串是否为空<br> reserve() //保留一定量内存以容纳一定数量的字符<br> [ ], at() //存取单一字符<br> copy() //将某值赋值为一个C_string<br> c_str() //将内容以C_string返回<br> data() //将内容以字符数组形式返回</p>
+<p>读入的一些区别：</p>
+<p>string s1;      默认构造函数，s1为空串</p>
+<p>string s2(s1);   将s2初始化为s1的一个副本</p>
+<p>string s3(“valuee”);   将s3初始化一个字符串面值副本</p>
+<p>string s4(n,’c’);   将s4 初始化为字符’c’的n个副本</p>
+<p>cin&gt;&gt;s5;  读取有效字符到遇到空格</p>
+<p>getline(cin,s6);  读取字符到遇到换行，空格可读入，知道‘\n’结束，</p>
+<p>getline(cin,s7,’a’); 一个直到‘a’结束，其中任何字符包括’\n’都能够读入。</p>
+<h2 id="关于char"><a href="#关于char" class="headerlink" title="关于char"></a>关于char</h2><h4 id="1、字符数组的定义与初始化"><a href="#1、字符数组的定义与初始化" class="headerlink" title="1、字符数组的定义与初始化"></a>1、字符数组的定义与初始化</h4><p>字符数组的初始化，最容易理解的方式就是逐个字符赋给数组中各元素。<br>char str[10]={ ‘I’,’ ‘,’a’,’m’,’ ‘,‘h’,’a’,’p’,’p’,’y’};<br>即把10个字符分别赋给str[0]到str[9]10个元素<br>如果花括号中提供的字符个数大于数组长度，则按语法错误处理；若小于数组长度，则只将这些字符数组中前面那些元素，其余的元素自动定为空字符（即 ‘\0’ )。</p>
+<h4 id="2、字符数组与字符串"><a href="#2、字符数组与字符串" class="headerlink" title="2、字符数组与字符串"></a>2、字符数组与字符串</h4><p>在c语言中，将字符串作为字符数组来处理。（c++中不是）<br>在实际应用中人们关心的是有效字符串的长度而不是字符数组的长度，例如，定义一个字符数组长度为100，而实际有效字符只有40个，为了测定字符串的实际长度，C语言规定了一个“字符串结束标志”，以字符’\0’代表。如果有一个字符串，其中第10个字符为’\0’，则此字符串的有效字符为9个。也就是说，在遇到第一个字符’\0’时，表示字符串结束，由它前面的字符组成字符串。<br>系统对字符串常量也自动加一个’\0’作为结束符。例如”C Program”共有9个字符，但在内存中占10个字节，最后一个字节’\0’是系统自动加上的。（通过sizeof()函数可验证）<br>有了结束标志’\0’后，字符数组的长度就显得不那么重要了，在程序中往往依靠检测’\0’的位置来判定字符串是否结束，而不是根据数组的长度来决定字符串长度。当然，在定义字符数组时应估计实际字符串长度，保证数组长度始终大于字符串实际长度。（在实际字符串定义中，常常并不指定数组长度，如char str[ ]）<br>说明：’\n’代表ASCII码为0的字符，从ASCII码表中可以查到ASCII码为0的字符不是一个可以显示的字符，而是一个“空操作符”，即它什么也不干。用它来作为字符串结束标志不会产生附加的操作或增加有效字符，只起一个供辨别的标志。<br>对C语言处理字符串的方法由以上的了解后，再对字符数组初始化的方法补充一种方法——即可以用字符串常量来初始化字符数组：<br>char str[ ]={“I am happy”};       //可以省略花括号，如下所示<br>char str[ ]=”I am happy”;<br>注意：上述这种字符数组的整体赋值只能在字符数组初始化时使用，不能用于字符数组的赋值，字符数组的赋值只能对其元素一一赋值，下面的赋值方法是错误的<br>char str[ ];<br>str=”I am happy”;</p>
+<p>不是用单个字符作为初值，而是用一个字符串（注意：字符串的两端是用双引号“”而不是单引号‘’括起来的）作为初值。显然，这种方法更直观方便。（注意：数组str的长度不是10，而是11，这点请务必记住，因为字符串常量”I am happy”的最后由系统自动加上一个’\0’）<br>因此，上面的初始化与下面的初始化等价<br>char str[ ]={‘I’,’ ‘,’a’,’m’,’ ‘,’h’,’a’,’p’,’p’,’y’,’\0’};<br>而不与下面的等价<br>char str[ ]={‘I’,’ ‘,’a’,’m’,’ ‘,’h’,’a’,’p’,’p’,’y’};<br>前者的长度是11，后者的长度是10.<br>说明：字符数组并不要求它的最后一个字符为’\0’，甚至可以不包含’\0’，向下面这样写是完全合法的。<br>char str[5]={‘C’,’h’,’i’,’n’,’a’};</p>
+<p>可见，用两种不同方法初始化字符数组后得到的数组长度是不同的。</p>
+<pre><code class="c++">
+<span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span>
+<span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>
+</span>{
+　　<span class="keyword">char</span> c1[]={<span class="string">'I'</span>,<span class="string">' '</span>,<span class="string">'a'</span>,<span class="string">'m'</span>,<span class="string">' '</span>,<span class="string">'h'</span>,<span class="string">'a'</span>,<span class="string">'p'</span>,<span class="string">'p'</span>,<span class="string">'y'</span>};
+　　<span class="keyword">char</span> c2[]=<span class="string">"I am happy"</span>;
+　　<span class="keyword">int</span> i1=<span class="keyword">sizeof</span>(c1);
+　　<span class="keyword">int</span> i2=<span class="keyword">sizeof</span>(c2);
+　　<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,i1);
+　　<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,i2);
+　　<span class="keyword">return</span> <span class="number">0</span>;
+
+}
+</code></pre>
+<p>结果：10   11</p>
+<h4 id="3、字符串的表示形式"><a href="#3、字符串的表示形式" class="headerlink" title="3、字符串的表示形式"></a>3、字符串的表示形式</h4><p>在C语言中，可以用两种方法表示和存放字符串：<br>（1）用字符数组存放一个字符串<br>          char str[ ]=”I love China”;<br>（2）用字符指针指向一个字符串<br>          char* str=”I love China”;<br>对于第二种表示方法，有人认为str是一个字符串变量，以为定义时把字符串常量”I love China”直接赋给该字符串变量，这是不对的。<br>C语言对字符串常量是按字符数组处理的，在内存中开辟了一个字符数组用来存放字符串常量，程序在定义字符串指针变量str时只是把字符串首地址（即存放字符串的字符数组的首地址）赋给str。<br>两种表示方式的字符串输出都用<br>printf(“%s\n”,str);<br>%s表示输出一个字符串，给出字符指针变量名str（对于第一种表示方法，字符数组名即是字符数组的首地址，与第二种中的指针意义是一致的），则系统先输出它所指向的一个字符数据，然后自动使str自动加1，使之指向下一个字符…，如此，直到遇到字符串结束标识符 “ \0 “。</p>
+<h4 id="4、对使用字符指针变量和字符数组两种方法表示字符串的讨论"><a href="#4、对使用字符指针变量和字符数组两种方法表示字符串的讨论" class="headerlink" title="4、对使用字符指针变量和字符数组两种方法表示字符串的讨论"></a>4、对使用字符指针变量和字符数组两种方法表示字符串的讨论</h4><p>虽然用字符数组和字符指针变量都能实现字符串的存储和运算，但它们二者之间是有区别的，不应混为一谈。<br>4.1、字符数组由若干个元素组成，每个元素放一个字符；而字符指针变量中存放的是地址（字符串/字符数组的首地址），绝不是将字符串放到字符指针变量中（是字符串首地址）<br>4.2、赋值方式：<br>     对字符数组只能对各个元素赋值，不能用以下方法对字符数组赋值<br>     char str[14];<br>     str=”I love China”;     （但在字符数组初始化时可以，即char str[14]=”I love China”;）<br>     而对字符指针变量，采用下面方法赋值：<br>     char<em> a;<br>     a=”I love China”;<br>     或者是 char</em> a=”I love China”;       都可以<br>4.3、对字符指针变量赋初值（初始化）：<br>         char<em> a=”I love China”;<br>等价于：<br>           char</em> a;<br>           a=”I love China”;<br>而对于字符数组的初始化<br>          char str[14]=”I love China”;<br>不能等价于：<br>         char str[14];<br>         str=”I love China”; （这种不是初始化，而是赋值，而对数组这样赋值是不对的）<br>4.4、如果定义了一个字符数组，那么它有确定的内存地址；而定义一个字符指针变量时，它并未指向某个确定的字符数据，并且可以多次赋值。</p>
+<h4 id="5、字符串处理函数"><a href="#5、字符串处理函数" class="headerlink" title="5、字符串处理函数"></a>5、字符串处理函数</h4><p>5.1<br>char <em>strcat(char </em>str1,const char <em>2 );<br>char </em>strcat(char <em>strDestination,const char </em>strSource );<br>功能：函数将字符串str2 连接到str1的末端，并返回指针str1<br>注：连接前两个字符串的后面都有一个’ \0 ‘，连接时将字符串1后面的 ‘ \0 ‘去掉，只在新串最后保留一个 ‘ \0 ‘<br>5.2<br>char <em>strcpy(char </em>str1,const char <em>2 );<br>char </em>strcpy(char <em>strDestination,const char </em>strSource );<br>功能：复制字符串strSource中的字符到字符串strDestination，包括空值结束符。返回值为指针strDestination。</p>
+<h6 id="备注："><a href="#备注：" class="headerlink" title="备注："></a>备注：</h6><p>1、“字符数组1”必须写成数组名形式，“字符串2”可以是字符数组名，也可以是一个字符串常量<br>2、复制时连同字符串后面的 ‘ \0 ‘ 一起复制到数组1中<br>3、不能用赋值语句直接将一个字符串常量或者字符数组直接赋给一个字符数组（同普通变量数组是一样的），而只能用strcpy函数处理。<br>4、可以用strcpy函数将字符串2中的前若干个字符复制到字符数组1中去。</p>
+<p>参考：</p>
+<p>功夫 熊猫</p>
+<p>大神养成中…..</p>
 
       
     </div>
@@ -319,13 +324,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2016/10/02/twofen/">关于二分的边界问题的大讨论</a></p>
+        <p><span>本文标题:</span><a href="/2016/10/03/stringandchar/">string&amp;&amp;char数组</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Franky 的个人博客">Franky</a></p>
-        <p><span>发布时间:</span>2016年10月02日 - 10时26分</p>
-        <p><span>最后更新:</span>2016年10月02日 - 11时08分</p>
+        <p><span>发布时间:</span>2016年10月03日 - 09时04分</p>
+        <p><span>最后更新:</span>2016年10月03日 - 09时10分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2016/10/02/twofen/" title="关于二分的边界问题的大讨论">http://franky-in.github.com/2016/10/02/twofen/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://franky-in.github.com/2016/10/02/twofen/　　作者: Franky" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/10/03/stringandchar/" title="string&amp;&amp;char数组">http://franky-in.github.com/2016/10/03/stringandchar/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://franky-in.github.com/2016/10/03/stringandchar/　　作者: Franky" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -338,7 +343,7 @@
 
 <nav id="article-nav">
   
-    <a href="/2016/10/03/stringandchar/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/10/03/stringandchar-1/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
@@ -348,8 +353,8 @@
     </a>
   
   
-    <a href="/2016/10/01/ST/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">ST算法</div>
+    <a href="/2016/10/02/twofen/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">关于二分的边界问题的大讨论</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -360,7 +365,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于string"><span class="toc-number">1.</span> <span class="toc-text">关于string</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于char"><span class="toc-number">2.</span> <span class="toc-text">关于char</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、字符数组的定义与初始化"><span class="toc-number">2.0.1.</span> <span class="toc-text">1、字符数组的定义与初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、字符数组与字符串"><span class="toc-number">2.0.2.</span> <span class="toc-text">2、字符数组与字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、字符串的表示形式"><span class="toc-number">2.0.3.</span> <span class="toc-text">3、字符串的表示形式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4、对使用字符指针变量和字符数组两种方法表示字符串的讨论"><span class="toc-number">2.0.4.</span> <span class="toc-text">4、对使用字符指针变量和字符数组两种方法表示字符串的讨论</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5、字符串处理函数"><span class="toc-number">2.0.5.</span> <span class="toc-text">5、字符串处理函数</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#备注："><span class="toc-number">2.0.5.0.1.</span> <span class="toc-text">备注：</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -408,7 +413,7 @@
     
       <div class="duoshuo" id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2016/10/02/twofen/" data-title="关于二分的边界问题的大讨论" data-url="http://franky-in.github.com/2016/10/02/twofen/"></div>
+    <div class="ds-thread" data-thread-key="2016/10/03/stringandchar/" data-title="string&amp;&amp;char数组" data-url="http://franky-in.github.com/2016/10/03/stringandchar/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
@@ -431,13 +436,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/10/03/stringandchar/" title="上一篇: string&amp;&amp;char数组">
+            <a href="/2016/10/03/stringandchar-1/" title="上一篇: string&amp;&amp;char数组">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2016/10/01/ST/" title="下一篇: ST算法">
+            <a href="/2016/10/02/twofen/" title="下一篇: 关于二分的边界问题的大讨论">
                 <i class="fa fa-angle-right"></i>
             </a>
         
