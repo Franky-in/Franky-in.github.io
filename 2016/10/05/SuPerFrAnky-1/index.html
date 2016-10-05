@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>SPFA(SuPerFrAnky) | Franky</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这篇讲的还是很(比较)清楚的吧~
+适用范围：给定的图存在负权边，这时类似Dijkstra等算法便没有了用武之地，而Bellman-Ford算法的复杂度又过高，SPFA算法便派上用场了。我们约定有向加权图G不存在负权回路，即最短路径一定存在。当然，我们可以在执行该算法前做一次拓扑排序，以判断是否存在负权回路，但这不是我们讨论的重点。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SPFA(SuPerFrAnky)">
+<meta property="og:url" content="http://franky-in.github.com/2016/10/05/SuPerFrAnky-1/index.html">
+<meta property="og:site_name" content="Franky">
+<meta property="og:description" content="这篇讲的还是很(比较)清楚的吧~
+适用范围：给定的图存在负权边，这时类似Dijkstra等算法便没有了用武之地，而Bellman-Ford算法的复杂度又过高，SPFA算法便派上用场了。我们约定有向加权图G不存在负权回路，即最短路径一定存在。当然，我们可以在执行该算法前做一次拓扑排序，以判断是否存在负权回路，但这不是我们讨论的重点。">
+<meta property="og:image" content="http://franky-in.github.com/images/1475654637706.png">
+<meta property="og:image" content="http://franky-in.github.com/images/1475654717808.jpg">
+<meta property="og:image" content="http://franky-in.github.com/images/1475654784285.jpg">
+<meta property="og:image" content="http://franky-in.github.com/images/1475654839552.jpg">
+<meta property="og:image" content="http://franky-in.github.com/images/1475655240588.jpg">
+<meta property="og:image" content="http://franky-in.github.com/images/1475655359031.jpg">
+<meta property="og:image" content="http://franky-in.github.com/images/1475655427978.jpg">
+<meta property="og:image" content="http://franky-in.github.com/images/1475655508849.jpg">
+<meta property="og:image" content="http://franky-in.github.com/images/1475656795609.jpg">
+<meta property="og:image" content="http://franky-in.github.com/images/1475656795609.jpg">
+<meta property="og:updated_time" content="2016-10-05T08:44:08.251Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SPFA(SuPerFrAnky)">
+<meta name="twitter:description" content="这篇讲的还是很(比较)清楚的吧~
+适用范围：给定的图存在负权边，这时类似Dijkstra等算法便没有了用武之地，而Bellman-Ford算法的复杂度又过高，SPFA算法便派上用场了。我们约定有向加权图G不存在负权回路，即最短路径一定存在。当然，我们可以在执行该算法前做一次拓扑排序，以判断是否存在负权回路，但这不是我们讨论的重点。">
+<meta name="twitter:image" content="http://franky-in.github.com/images/1475654637706.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Franky" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: undefined
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">Franky</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">凡心所向，素履以往:)</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/ST/" style="font-size: 10px;">ST</a> <a href="/tags/二分/" style="font-size: 10px;">二分</a> <a href="/tags/常识/" style="font-size: 20px;">常识</a> <a href="/tags/最短路/" style="font-size: 10px;">最短路</a> <a href="/tags/算法/" style="font-size: 20px;">算法</a> <a href="/tags/细节/" style="font-size: 20px;">细节</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://fancypei.github.io/">Fancy</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://men.ci/">Menci</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://jiecao2233.github.io/">jiecao</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://naivekun.github.io/">naive</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://criskaa.github.io/">wxy</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">一只开心的OIer</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Franky</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Franky</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">凡心所向，素履以往:)</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-SuPerFrAnky-1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/05/SuPerFrAnky-1/" class="article-date">
+      <time datetime="2016-10-05T07:47:51.000Z" itemprop="datePublished">2016-10-05</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SPFA(SuPerFrAnky)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/算法/">算法</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/最短路/">最短路</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>这篇讲的还是很(比较)清楚的吧~</p>
+<h4 id="适用范围："><a href="#适用范围：" class="headerlink" title="适用范围："></a>适用范围：</h4><p>给定的图存在负权边，这时类似Dijkstra等算法便没有了用武之地，而Bellman-Ford算法的复杂度又过高，SPFA算法便派上用场了。<br>我们约定有向加权图G不存在负权回路，即最短路径一定存在。当然，我们可以在执行该算法前做一次拓扑排序，以判断是否存在负权回路，但这不是我们讨论的重点。</p>
+<a id="more"></a>
+<hr>
+<h4 id="算法思想："><a href="#算法思想：" class="headerlink" title="算法思想："></a>算法思想：</h4><p>我们用数组d记录每个结点的最短路径估计值，用邻接表来存储图G。<br>我们采取的方法是动态逼近法：设立一个先进先出的队列用来保存待优化的结点，优化时每次取出队首结点u，并且用u点当前的最短路径估计值对离开u点所指向的结点v进行松弛操作，如果v点的最短路径估计值有所调整，且v点不在当前的队列中，就将v点放入队尾。这样不断从队列中取出结点来进行松弛操作，直至队列空为止.<br>(其实就是一次一次的更新求min值)</p>
+<hr>
+<h4 id="复杂度："><a href="#复杂度：" class="headerlink" title="复杂度："></a>复杂度：</h4><p>期望的时间复杂度O(KE)， 其中K为所有顶点进队的平均次数，可以证明K一般小于等于2。<br>(自信易证！！？)</p>
+<hr>
+<h4 id="实现方法："><a href="#实现方法：" class="headerlink" title="实现方法："></a>实现方法：</h4><p>建立一个队列，初始时队列里只有起始点，再建立一个表格记录起始点到所有点的最短路径（该表格的初始值要赋为极大值，该点到他本身的路径赋为0）。<br>然后执行松弛操作，用队列里有的点作为起始点去刷新到所有点的最短路，如果刷新成功且被刷新点不在队列中则把该点加入到队列最后。重复执行直到队列为空。<br>判断有无负环：<br>如果某个点进入队列的次数超过N次则存在负环（SPFA无法处理带负环的图）</p>
+<hr>
+<p>下面是一个例子：</p>
+<p><img src="/images/1475654637706.png" alt="image"></p>
+<p>首先建立起始点a到其余各点的最短路径表格：<br><img src="/images/1475654717808.jpg" alt="image"><br>最开始源点a入队，当队列非空时：<br>1.队首元素（a）出队，<br>对以a为起始点的所有边的终点依次进行松弛操作（此处有b,c,d三个点）<br>此时路径表格状态为：<br><img src="/images/1475654784285.jpg" alt="image"><br>在松弛时三个点的最短路径估值变小了，而这些点队列中都没有出现，这些点需要入队，此时，队列中新入队了三个结点b,c,d：<br>2.队首元素b点出队，<br>对以b为起始点的所有边的终点依次进行松弛操作（此处只有e点）<br>此时路径表格状态为：<br><img src="/images/1475654839552.jpg" alt="image"><br>在最短路径表中，e的最短路径估值也变小了，e在队列中不存在，因此e也要<br>入队，此时队列中的元素为c,d,e；<br>3.队首元素c点出队，对以c为起始点的所有边的终点依次进行松弛操作（此处有e,f两个点）<br>此时路径表格状态为：<br><img src="/images/1475655240588.jpg" alt="image"><br>在最短路径表中，e，f的最短路径估值变小了，e在队列中存在，f不存在。<br>因此e不用入队了，f要入队，此时队列中的元素为d，e，f。<br>4.队首元素d点出队，对以d为起始点的所有边的终点依次进行松弛操作（此处只有g这个点）<br>此时路径表格状态为：<br><img src="/images/1475655359031.jpg" alt="image"><br>在最短路径表中，g的最短路径估值没有变小（松弛不成功，就是没有更新），没有新结点入队，队列中元素为f，g<br>5.队首元素f点出队，对以f为起始点的所有边的终点依次进行松弛操作（此处有d，e，g三个点）<br>此时路径表格状态为：<br><img src="/images/1475655427978.jpg" alt="image"><br>在最短路径表中，e，g的最短路径估值又变小，队列中无e点，e入队，队列中存在g这个点，g不用入队，此时队列中元素为g，e<br>6.队首元素g点出队，对以g为起始点的所有边的终点依次进行松弛操作（此处只有b点）<br>此时路径表格状态为：<br><img src="/images/1475655508849.jpg" alt="image"><br>在最短路径表中，b的最短路径估值又变小，队列中无b点，b入队，<br>此时队列中元素为e，b<br>7.队首元素e点出队，对以e为起始点的所有边的终点依次进行松弛操作（此处只有g这个点）<br>此时路径表格状态为：<br><img src="/images/1475656795609.jpg" alt="image"><br>在最短路径表中，g的最短路径估值没变化（松弛不成功），此时队列中元素为b<br>8.队首元素b点出队，对以b为起始点的所有边的终点依次进行松弛操作（此处只有e这个点）<br>此时路径表格状态为：<br><img src="/images/1475656795609.jpg" alt="image"><br>在最短路径表中，e的最短路径估值没变化（松弛不成功），此时队列为空了。</p>
+<p>最终a到g的最短路径为14。</p>
+<p>代码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">struct</span> node</div><div class="line">&#123;<span class="keyword">int</span> x;</div><div class="line"> <span class="keyword">int</span> value;</div><div class="line"> <span class="keyword">int</span> next;</div><div class="line">&#125;;</div><div class="line">node e[<span class="number">60000</span>];</div><div class="line"><span class="keyword">int</span> visited[<span class="number">1505</span>],dis[<span class="number">1505</span>],st[<span class="number">1505</span>],<span class="built_in">queue</span>[<span class="number">1000</span>];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">int</span> n,m,u,v,w,start,h,r,cur;</div><div class="line">  freopen(<span class="string">"c.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">  freopen(<span class="string">"c.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>); </div><div class="line">  <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m)!=EOF)</div><div class="line">  &#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">1500</span>;i++)</div><div class="line">      &#123;visited[i]=<span class="number">0</span>;</div><div class="line">       dis[i]=<span class="number">-1</span>;</div><div class="line">       st[i]=<span class="number">-1</span>;  <span class="comment">//这个初始化给下边那个while循环带来影响</span></div><div class="line">      &#125;</div><div class="line"> </div><div class="line">   <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</div><div class="line">      &#123;</div><div class="line">       <span class="built_in">scanf</span>(<span class="string">"%d%d%d\n"</span>,&amp;u,&amp;v,&amp;w);     </div><div class="line">       e[i].x=v;            </div><div class="line">       <span class="comment">//记录后继节点    相当于链表中的创建一个节点，并使得数据域先记录</span></div><div class="line">       e[i].value=w;</div><div class="line">       e[i].next=st[u];     </div><div class="line">       <span class="comment">//记录顶点节点的某一个边表节点的下标，</span></div><div class="line">       <span class="comment">//相当于在链表中吧该边表节点的next指针先指向他的后继边表节点</span></div><div class="line">       st[u]=i;                </div><div class="line">       <span class="comment">//把该顶点的指针指向边表节点，相当于链表中的插入中，头结点的指针改变</span></div><div class="line">      &#125;</div><div class="line">    start=<span class="number">1</span>;</div><div class="line">    visited[start]=<span class="number">1</span>;</div><div class="line">    dis[start]=<span class="number">0</span>;</div><div class="line">    h=<span class="number">0</span>;</div><div class="line">    r=<span class="number">1</span>;</div><div class="line">    <span class="built_in">queue</span>[r]=start;</div><div class="line">    <span class="keyword">while</span>(h!=r)</div><div class="line">     &#123;</div><div class="line"></div><div class="line">      h=(h+<span class="number">1</span>)%<span class="number">1000</span>;</div><div class="line">      cur=<span class="built_in">queue</span>[h];</div><div class="line">      <span class="keyword">int</span> tmp=st[cur];</div><div class="line">      visited[cur]=<span class="number">0</span>;</div><div class="line">    </div><div class="line"></div><div class="line">     <span class="keyword">while</span>(tmp!=<span class="number">-1</span>)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span> (dis[e[tmp].x]&lt;dis[cur]+e[tmp].value)            <span class="comment">//改成大于号才对</span></div><div class="line">            &#123;</div><div class="line">                   dis[e[tmp].x]=dis[cur]+e[tmp].value;</div><div class="line">                    <span class="keyword">if</span>(visited[e[tmp].x]==<span class="number">0</span>)</div><div class="line">                      &#123;</div><div class="line"></div><div class="line">                           visited[e[tmp].x]=<span class="number">1</span>;</div><div class="line">                           r=(r+<span class="number">1</span>)%<span class="number">1000</span>;</div><div class="line">                            <span class="built_in">queue</span>[r]=e[tmp].x;</div><div class="line">                       &#125;</div><div class="line">            &#125;</div><div class="line">         tmp=e[tmp].next;      </div><div class="line">        &#125;</div><div class="line">     &#125; </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,dis[n]);</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="number">0</span>;   </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/10/05/SuPerFrAnky-1/">SPFA(SuPerFrAnky)</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Franky 的个人博客">Franky</a></p>
+        <p><span>发布时间:</span>2016年10月05日 - 15时47分</p>
+        <p><span>最后更新:</span>2016年10月05日 - 16时44分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/10/05/SuPerFrAnky-1/" title="SPFA(SuPerFrAnky)">http://franky-in.github.com/2016/10/05/SuPerFrAnky-1/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://franky-in.github.com/2016/10/05/SuPerFrAnky-1/　　作者: Franky" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2016/10/03/stringandchar/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">string&amp;&amp;char数组</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#适用范围："><span class="toc-number">1.</span> <span class="toc-text">适用范围：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#算法思想："><span class="toc-number">2.</span> <span class="toc-text">算法思想：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#复杂度："><span class="toc-number">3.</span> <span class="toc-text">复杂度：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实现方法："><span class="toc-number">4.</span> <span class="toc-text">实现方法：</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="2016/10/05/SuPerFrAnky-1/" data-title="SPFA(SuPerFrAnky)" data-url="http://franky-in.github.com/2016/10/05/SuPerFrAnky-1/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"null"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = '/js/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+</div>
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2016/10/03/stringandchar/" title="下一篇: string&amp;&amp;char数组">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/05/SuPerFrAnky-1/">SPFA(SuPerFrAnky)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/03/stringandchar/">string&&char数组</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/02/twofen/">关于二分的边界问题的大讨论</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/01/ST/">ST算法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/30/byte/">基本数据类型范围大小&&字节大小</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/25/mdzz/">mdzz</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 Franky
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >海贼到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
