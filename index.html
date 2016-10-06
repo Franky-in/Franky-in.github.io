@@ -196,80 +196,6 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-链式前向星-1" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/10/06/链式前向星-1/" class="article-date">
-      <time datetime="2016-10-06T08:31:55.000Z" itemprop="datePublished">2016-10-06</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/06/链式前向星-1/">从前向星到链式前向星</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>我们首先来看一下什么是前向星.</p>
-<p>前向星是一种特殊的边集数组,我们把边集数组中的每一条边按照起点从小到大排序,如果起点相同就按照终点从小到大排序,并记录下以某个点为起点的所有边在数组中的起始位置和存储长度,那么前向星就构造好了.</p>
-<p>用len[i]来记录所有以i为起点的边在数组中的存储长度.<br>用head[i]记录以i为边集在数组中的第一个存储位置.</p>
-<p>那么对于下图:<br><img src="/images/1475742920259.jpg" alt="image"></p>
-<p>我们输入边的顺序为:<br>1 2<br>2 3<br>3 4<br>1 3<br>4 1<br>1 5<br>4 5<br>那么排完序后就得到:<br><img src="/images/1475743095727.png" alt="image"></p>
-<p>得到:<br>head[1] = 1<br>len[1] = 3<br>head[2] = 4<br>len[2] = 1<br>head[3] = 5<br>len[3] = 1<br>head[4] = 6<br>len[4] = 2</p>
-<p>但是利用前向星会有排序操作,如果用快排时间至少为O(nlog(n))<br>所以引出：<br>↓↓↓↓<br>链式前向星</p>
-<p>如果用链式前向星,就可以避免排序.<br>我们建立边结构体为:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> no</div><div class="line">&#123;</div><div class="line">     <span class="keyword">int</span> next;</div><div class="line">     <span class="keyword">int</span> to;</div><div class="line">     <span class="keyword">int</span> w;</div><div class="line">&#125;;</div><div class="line">no Edge[N];</div></pre></td></tr></table></figure>
-<p>其中edge[i].to表示第i条边的终点,edge[i].next表示与第i条边同起点的下一条边的存储位置,edge[i].w为边权值.<br>另外还有一个数组head[],它是用来表示以i为起点的第一条边存储的位置,实际上你会发现这里的第一条边存储的位置其实在以i为起点的所有边的最后输入的那个编号.<br>head[]数组一般初始化为-1,对于加边的add函数是这样的:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> w)</span></span></div><div class="line">&#123;</div><div class="line">    edge[cnt].w = w;</div><div class="line">    edge[cnt].to = v;</div><div class="line">    edge[cnt].next = head[u];</div><div class="line">    head[u] = cnt++;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>初始化cnt = 0,这样,现在我们还是按照上面的图和输入来模拟一下:<br><img src="/images/1475743480014.png" alt="image"></p>
-<p>很明显,head[i]保存的是以i为起点的所有边中编号最大的那个,而把这个当作顶点i的第一条起始边的位置.<br>这样在遍历时是倒着遍历的,也就是说与输入顺序是相反的,不过这样不影响结果的正确性.<br>比如以上图为例,以节点1为起点的边有3条,<br>它们的编号分别是0,3,5.<br>而head[1] = 5.<br>我们在遍历以u节点为起始位置的所有边的时候是这样的:<br>for(int i=head[u];i!=0;i=edge[i].next)<br>那么就是说先遍历编号为5的边,也就是head[1],然后就是edge[5].next,也就是编号3的边,然后继续edge[3].next,<br>也就是编号0的边,可以看出是逆序的.</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/存储/">存储</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/常识/">常识</a></li></ul>
-    </div>
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
     <article id="post-链式前向星" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -297,20 +223,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>我们首先来看一下什么是前向星.</p>
+              <p>我们首先来看一下什么是前向星.</p>
 <p>前向星是一种特殊的边集数组,我们把边集数组中的每一条边按照起点从小到大排序,如果起点相同就按照终点从小到大排序,并记录下以某个点为起点的所有边在数组中的起始位置和存储长度,那么前向星就构造好了.</p>
-<p>用len[i]来记录所有以i为起点的边在数组中的存储长度.<br>用head[i]记录以i为边集在数组中的第一个存储位置.</p>
-<p>那么对于下图:<br><img src="/images/1475742920259.jpg" alt="image"></p>
-<p>我们输入边的顺序为:<br>1 2<br>2 3<br>3 4<br>1 3<br>4 1<br>1 5<br>4 5<br>那么排完序后就得到:<br><img src="/images/1475743095727.png" alt="image"></p>
-<p>得到:<br>head[1] = 1<br>len[1] = 3<br>head[2] = 4<br>len[2] = 1<br>head[3] = 5<br>len[3] = 1<br>head[4] = 6<br>len[4] = 2</p>
-<p>但是利用前向星会有排序操作,如果用快排时间至少为O(nlog(n))<br>所以引出：<br>↓↓↓↓<br>链式前向星</p>
-<p>如果用链式前向星,就可以避免排序.<br>我们建立边结构体为:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> no</div><div class="line">&#123;</div><div class="line">     <span class="keyword">int</span> next;</div><div class="line">     <span class="keyword">int</span> to;</div><div class="line">     <span class="keyword">int</span> w;</div><div class="line">&#125;;</div><div class="line">no Edge[N];</div></pre></td></tr></table></figure>
-<p>其中edge[i].to表示第i条边的终点,edge[i].next表示与第i条边同起点的下一条边的存储位置,edge[i].w为边权值.<br>另外还有一个数组head[],它是用来表示以i为起点的第一条边存储的位置,实际上你会发现这里的第一条边存储的位置其实在以i为起点的所有边的最后输入的那个编号.<br>head[]数组一般初始化为-1,对于加边的add函数是这样的:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> w)</span></span></div><div class="line">&#123;</div><div class="line">    edge[cnt].w = w;</div><div class="line">    edge[cnt].to = v;</div><div class="line">    edge[cnt].next = head[u];</div><div class="line">    head[u] = cnt++;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>初始化cnt = 0,这样,现在我们还是按照上面的图和输入来模拟一下:<br><img src="/images/1475743480014.png" alt="image"></p>
-<p>很明显,head[i]保存的是以i为起点的所有边中编号最大的那个,而把这个当作顶点i的第一条起始边的位置.<br>这样在遍历时是倒着遍历的,也就是说与输入顺序是相反的,不过这样不影响结果的正确性.<br>比如以上图为例,以节点1为起点的边有3条,<br>它们的编号分别是0,3,5.<br>而head[1] = 5.<br>我们在遍历以u节点为起始位置的所有边的时候是这样的:<br>for(int i=head[u];i!=0;i=edge[i].next)<br>那么就是说先遍历编号为5的边,也就是head[1],然后就是edge[5].next,也就是编号3的边,然后继续edge[3].next,<br>也就是编号0的边,可以看出是逆序的.</p>
-
+          
       
     </div>
     
@@ -327,6 +242,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/常识/">常识</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a  href="/2016/10/06/链式前向星/#more">大航海 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
