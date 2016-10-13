@@ -126,7 +126,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/ST/" style="font-size: 10px;">ST</a> <a href="/tags/二分/" style="font-size: 10px;">二分</a> <a href="/tags/常识/" style="font-size: 20px;">常识</a> <a href="/tags/最短路/" style="font-size: 10px;">最短路</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/细节/" style="font-size: 15px;">细节</a>
+                        <a href="/tags/DP/" style="font-size: 10px;">DP</a> <a href="/tags/ST/" style="font-size: 10px;">ST</a> <a href="/tags/二分/" style="font-size: 10px;">二分</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/常识/" style="font-size: 20px;">常识</a> <a href="/tags/最短路/" style="font-size: 10px;">最短路</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/细节/" style="font-size: 15px;">细节</a>
                     </div>
                 </section>
                 
@@ -195,6 +195,72 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-State-compression" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/10/11/State-compression/" class="article-date">
+      <time datetime="2016-10-11T13:29:54.000Z" itemprop="datePublished">2016-10-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/11/State-compression/">DP的状压优化</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="状态压缩"><a href="#状态压缩" class="headerlink" title="状态压缩"></a>状态压缩</h2><p>作为OIers，我们不同程度地知道各式各样的算法。<br>大部分问题的算法都有一个多项式级别的时间复杂度上界（如O(log n)），我们一般称这类问题为P类(deterministic Polynomial-time)问题，例如在有向图中求最短路径。<br>然而存在几类问题，至今仍未被很好地解决，人们怀疑他们根本没有多项式时间复杂度的算法，对这些问题尚不知有多项式时间的算法存在。<br>对于某些至今尚未找到多项式时间复杂度的算法，然而它们的应用又是如此的广泛，我们不得不努力寻找好的解决方案。毫无疑问，对于这些问题，使用暴力的搜索是可以得到正确的答案的，但在信息学竞赛那有限的时间内，很难写出速度可以忍受的暴力搜索。例如对于TSP问题，暴力搜索的复杂度是O(n!)，如此高的复杂度使得它对于高于10的数据规模就无能为力了。那么，有没有一种算法，它可以在很短的时间内实现，而其最坏情况下的表现比搜索好呢？答案是肯定的——</p>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/动态规划/">动态规划</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/优化/">优化</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2016/10/11/State-compression/#more">大航海 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-链式前向星" class="article article-type-post" itemscope itemprop="blogPost">
   
